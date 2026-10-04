@@ -1,0 +1,25 @@
+# usage: s36str a b c  => s36str a a b b c c
+# usage: s36str k1 s1 k2 s2 k3 s3 
+# affiche les chaines s(i) en fonction de l'ordre
+# des cles k(i). Les cles sont comparees de facon
+# lexicographique.
+
+s36str() {
+    if [ $# -eq 3 ] ; then
+        s36str "$1" "$1" "$2" "$2" "$3" "$3" 
+        return 0
+    fi
+    if [ ! "$1" \> "$3" -a ! "$3" \> "$5" ] ; then
+        echo $2 ; echo $4 ; echo $6
+    elif [ ! "$1" \> "$5" -a ! "$5" \> "$3" ]; then
+        echo $2 ; echo $6 ; echo $4
+    elif [ ! "$3" \> "$1" -a ! "$1" \> "$5" ]; then
+        echo $4 ; echo $2 ; echo $6
+    elif [ ! "$3" \> "$5" -a ! "$5" \> "$1" ] ; then
+        echo $4 ; echo $6 ; echo $2
+    elif [ ! "$5" \> "$1" -a ! "$1" \> "$3" ] ; then
+        echo $6 ; echo $2 ; echo $4
+    else
+        echo $6 ; echo $4 ; echo $2
+    fi
+}
