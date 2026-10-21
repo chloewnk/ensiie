@@ -1,5 +1,7 @@
 # SHELL SCRIPT
 
+# PREMIERS PAS
+
 ```shell
 #!/bin/bash
 echo -n " " Hello
@@ -14,8 +16,12 @@ bash hello.sh
 ./hello.sh
 ```
 
-## conditions : 
+## sourcer un script
 
+
+# INSTRUCTION
+## conditions : 
+### if
 ```bash
 if cmd-cond
 then
@@ -44,19 +50,19 @@ else
 fi
 ```
 
-ou utilisation du && :
+**ou utilisation du && :**
 
 ```bash
 date | grep -q 2016 && echo oui
 ```
 
 
-case : 
-
+### case
 ```bash
 case $n in ([0-9] | [0-9][0-9] | [0-9][0-9][0-9]
     good=1 ;; *)
     good=0 ;;
+esac
 ```
 elif : 
 
@@ -71,9 +77,16 @@ fi
 ```
 
 ## boucles 
-
+### while
 ```bash
-forv in str-list
+while true ; do 
+    sleep
+    ping -c 1 192.168.1.10 > /dev/null 2>&1 || echo -e -n "\b\b\b\b"
+done
+```
+### for
+```bash
+for in str-list
 do
     ...
     ...
@@ -82,6 +95,15 @@ done
 ```
 
 exemple : 
+
+```bash
+for i in {1..10} ; do
+    for j in {19...15} ; do
+        echo -n silence " "
+    done
+    echo
+done
+```
 
 ```bash
 for bn in (cd $dir ; ls); do 
@@ -97,6 +119,23 @@ if test -f $f -a -r $f -a -w $f -a ! -x $f ; then
   echo ok
 fi
 ```
+
+### Les arguments : 
+**sur un str** :
+- -n str : str est non vide
+- -z str : est vide
+
+**sur un fichier** :
+- -e file : le fichier existe et n'est pas un lien mort
+- -f file : fichier existe et est régulier
+- -d file : fichier existe et est un repertoir
+- -h file : fichier existe et est un lien symobolique
+- -r file : fichier existe et peut etre lu
+- -w file : fichier existe et peut etre écrit
+- -x file : fichier existe et peut etre exécuté
+
+
+
 ## commande exec & exit :
 
 ## commande read : 
